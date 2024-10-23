@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/tailwindcss.css' %}">
+  
+</head>
+<body class="bg-gray-200">
+  {% block content %}{% endblock %}
+  <script src="{% static 'js/dark-mode.js' %}"></script>
+  <script src="{% static 'js/sidebar.js' %}"></script>
+  <script src="{% static 'js/flowbite.js' %}"></script>
+</body>
+</html>
