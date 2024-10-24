@@ -1,13 +1,60 @@
-{% extends '_base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'account_base.html' %}
+{% load static %}
 
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
-<h2>Sign up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <button class="btn btn-success" type="submit">Sign up</button>
-</form>
-{% endblock content %}
+  <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
+    <a href="#" class="flex items-center justify-center mb-8 text-2xl font-semibold lg:mb-10 dark:text-white">
+        <img src="{% static 'images/logo.svg' %}" class="mr-4 h-11" alt="FlowBite Logo">
+        <span>Flowbite</span>
+    </a>
+    <!-- Card -->
+    <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+            注册
+        </h2>
+      {% if form.errors %}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div class="alert alert-error">
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-error">
+            <strong>{{ error|escape }}</strong>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <form class="mt-8 space-y-6" method="POST">
+        {% csrf_token %}
+        <div>
+          <label for="email"
+                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.email.label }}</label>
+          {{ form.email }}
+        </div>
+        <div>
+          <label for="password"
+                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.password1.label }}</label>
+          {{ form.password1 }}
+        </div>
+        <div>
+          <label for="re_password"
+                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.password2.label }}</label>
+          {{ form.password2 }}
+        </div>
+
+        <button type="submit"
+                class="w-full px-5 py-3 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+          Create account
+        </button>
+        <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+          Already have an account? <a href="{% url 'account_login' %}"
+                                      class="text-primary-700 hover:underline dark:text-primary-500">Login here</a>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock %}

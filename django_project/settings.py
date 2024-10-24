@@ -200,9 +200,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 SESSION_REMEMBER = True
+SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_ADAPTER = "accounts.adapter.MyAccountAdapters"
 ACCOUNT_FORMS  = {
     "login":"accounts.forms.MyCustomLoginForm",
-    "reset_password":"accounts.forms.MyCustomRestPasswordForm"
+    "reset_password":"accounts.forms.MyCustomRestPasswordForm",
+    "signup":"accounts.forms.MyCustomSignupForm"
 }
