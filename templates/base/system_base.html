@@ -1,0 +1,12 @@
+{% extends 'base/_base.html' %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+ {% include 'pages/header.html' %}
+  <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+    {% include 'pages/sidebar.html' %}
+    {% block main %}{% endblock %}
+  </div>
+{% endblock content %}
